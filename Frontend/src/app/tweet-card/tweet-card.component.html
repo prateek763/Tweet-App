@@ -1,0 +1,74 @@
+<div class="row blog-item px-3 pb-5 border border-top" *ngFor="let data of posts">
+    <div class="col-md-12 date">
+        <div class="d-flex mb-3">
+            <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{data.date | date}}</small>
+            <small class="mr-2 text-muted"><i class="fa fa-thumbs-up"></i> {{data.likeCount}} Like</small>
+            <small class="mr-2 text-muted"><i class="fa fa-reply"></i> {{data.replyCount}} Reply </small>
+        </div>
+        <p>
+            {{data.tweet}}
+        </p>
+        <div class="d-flex">
+            <div class="ml-auto">
+                <a class="btn btn-danger" (click)="onDelete(data.id,data.username)" data-bs-toggle="modal" data-bs-target="#delete">Delete</a>
+                <a class="btn btn-primary px-4" (click)="onUpdate(data.id,data.username)" data-bs-toggle="modal" data-bs-target="#post">Update</a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<!-- Update Tweet -->
+<div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-md  modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Update the Tweet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <div class="d-block main-content">
+                    <img src="../../assets/images/undraw_updated_rr85.svg" alt="Image" class="img-fluid" style="background-color: #b2fcff;">
+                    <div class="content-text p-4">
+
+                        <h5 class="mb-4">Enter the Tweet to Update</h5>
+                        <p class="mb-4"><textarea rows="4" cols="50" name="description" #post ngModel minlength="3" maxlength="144"></textarea></p>
+                        <div class="d-flex">
+                            <div class="ml-auto">
+                                <a class="btn btn-link" data-bs-dismiss="modal">No thanks</a>
+                                <a class="btn btn-primary px-4" data-bs-dismiss="modal" (click)="update(post.value)">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirm Delete-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-md  modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Delete the Tweet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <div class="d-block main-content">
+                    <div class="content-text p-4">
+
+                        <p>Do you really want to delete these records? This process cannot be undone.</p>
+                        <div class="d-flex">
+                            <div class="ml-auto">
+                                <a class="btn btn-link" data-bs-dismiss="modal">Cancel</a>
+                                <a class="btn btn-danger px-4" data-bs-dismiss="modal" (click)="delete()">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

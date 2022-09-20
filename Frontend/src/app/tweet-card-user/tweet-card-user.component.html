@@ -1,0 +1,53 @@
+<div class="row blog-item px-3 pb-5 border border-top" *ngFor="let data of tweets">
+    <div class="col-md-12 date">
+        <div class="d-flex mb-3">
+            <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{data.date | date}}</small>
+            <small class="mr-2 text-muted"><i class="fa fa-thumbs-up"></i> {{data.likeCount}} <a class="like" (click)="like(data.username,data.id)">Like</a></small>
+            <small class="mr-2 text-muted"><i class="fa fa-reply"></i> {{data.replyCount}} <a class="like" (click)="onReply(data.username,data.id)" data-bs-toggle="modal" data-bs-target="#reply">Reply </a></small>
+            <small class="mr-2 text-muted name"> {{data.username}}</small>
+        </div>
+        <p>
+            {{data.tweet}}
+        </p>
+        <a class="btn btn-link p-0" role="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#tweet'+data.id" aria-expanded="false" aria-controls="collapseExample">View all Reply<i class="fa fa-angle-right"></i></a>
+        <div class="collapse" [id]="'tweet'+data.id">
+            <div class="card border-top" *ngFor="let twee of data.repliedTweets">
+                <div class="d-flex mb-3">
+                    <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{twee.date | date}}</small>
+                    <small class="mr-2 text-muted name1"> {{twee.userReplied}}</small>
+                </div>
+                <p>
+                    {{twee.tweet}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reply Tweet -->
+<div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-md  modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Reply to the Tweet </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <div class="d-block main-content">
+                    <img src="../../assets/images/reply.png" alt="Image" class="img-fluid" style="background-color: #b2fcff;">
+                    <div class="content-text p-4">
+
+                        <h5 class="mb-4">Enter the Tweet to Reply</h5>
+                        <p class="mb-4"><textarea rows="4" cols="50" name="description" #post ngModel minlength="3" maxlength="144"></textarea></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-link" data-bs-dismiss="modal">No thanks</a>
+                <a class="btn btn-primary px-4" data-bs-dismiss="modal" (click)="reply(post.value)">Reply</a>
+
+            </div>
+        </div>
+    </div>
+</div>

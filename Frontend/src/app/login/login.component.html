@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body>
+
+
+    <div class="section">
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                        <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                        <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+                        <label for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <form #addForm="ngForm" (ngSubmit)="login(addForm.value)">
+                                                <h4 class="mb-4 pb-3">Log In</h4>
+                                                <div class="form-group">
+                                                    <input type="email" name="username" class="form-style" placeholder="Your Username" id="logemail" autocomplete="off" ngModel required>
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="password" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off" ngModel required>
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                </div>
+                                                <button href="#" class="btn mt-4" type="submit">submit</button>
+                                                <p class="mb-0 mt-4 text-center"><a routerLink="/forgot-password" class="link">Forgot your password?</a></p>
+                                                <p class="text text-danger" [style.display]="logdisp">{{error}}</p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <form #signForm="ngForm" (ngSubmit)="signUp(signForm.value,signForm)">
+                                                <h4 class="mb-4 pb-3">Sign Up</h4>
+                                                <div class="row justify-content-between text-left">
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="text" class="form-style field" placeholder="Your First Name" name="first_name" id="first_name" autocomplete="off" ngModel required>
+                                                        <i class="input-icon uil uil-user-plus"></i></div>
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="text" class="form-style field" placeholder="Your Last Name" name="last_name" id="last_name" autocomplete="off" ngModel required>
+                                                        <i class="input-icon uil uil-user-plus"></i> </div>
+                                                </div>
+                                                <div class="row justify-content-between text-left">
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="text" class="form-style field" placeholder="Your Username" name="username" id="username" autocomplete="off" ngModel required>
+                                                        <i class="input-icon uil uil-user-plus"></i></div>
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="email" class="form-style field" placeholder="Your Email" name="email" #email="ngModel" email autocomplete="off" ngModel required>
+                                                        <i class="input-icon uil uil-at"></i>
+                                                        <span *ngIf="email.invalid && email.touched">
+                                                            Enter valid email address
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-between text-left">
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="text" class="form-style field" placeholder="Your Mobile No." name="number" #number="ngModel" pattern="[6-9]{1}[0-9]{9}" ngModel required>
+                                                        <i class="input-icon uil uil-phone-alt"></i>
+                                                        <span *ngIf="number.invalid && number.touched">
+                                                            Number must be of 10 digits.
+                                                        </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-6 flex-column d-flex"><input type="password" class="form-style field" placeholder="Your Password" name="password" minlength="6" #password="ngModel" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}" autocomplete="off"
+                                                            ngModel required>
+                                                        <i class="input-icon uil uil-lock-open-alt"></i>
+                                                        <span *ngIf="password.invalid && password.touched">
+                                                            Password length > 6 letters and should contain capital, small letters, numbers and special characters
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <h5 id="note">Note: All Fields are mandatory.</h5>
+                                                <button href="#" class="btn mt-4" type="submit" [disabled]="signForm.invalid">submit</button>
+                                            </form>
+                                            <p class="text text-success" [style.display]="disp1">Account created successfully. Kindly login with your username and password.</p>
+                                            <p class="text text-danger" [style.display]="disp">{{error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
