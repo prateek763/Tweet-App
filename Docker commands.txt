@@ -1,0 +1,16 @@
+Build docker iamge of Tweet App----> Navigate to C:\Users\LENOVO\Desktop\DigitalHonors\TweetApp
+docker build -f Dockerfile -t tweet-app .
+
+Run mongodb image
+docker run -d -p 27017:27017 --name tweet-mongodb mongo:latest
+
+Run spring boot app iamge
+docker run -p 8080:8080 --name tweet-app --link tweet-mongodb:mongo -d tweet-app
+
+Run Mongodb commands in docker container
+docker exec -it <container-name> bash
+show dbs
+use <db-name>
+show collections
+db.<collection-name>.find().pretty()
+
